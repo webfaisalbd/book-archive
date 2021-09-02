@@ -42,22 +42,25 @@ const display = data => {
         datas.forEach(item => {
             // console.log(item.title);
             const divElement = document.createElement('div');
-            divElement.classList.add("col");
+            divElement.classList.add("col-lg-4");
+            divElement.classList.add("col-md-6");
             divElement.innerHTML = `
 
         <div class="card">
         <div class="card-body p-3">
         <img 
         src="https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg" class="card-img-top" alt="...">
+        const num=item.publisher;
             <h4 class="card-title"><b>Book Title:</b> ${item.title}</h4>
             <p class="card-title"><b>Author Name:</b> ${item.author_name} </p>
-            <p><b>Publisher:</b> ${item.publisher[0]}</p>
-            <p><b>Published:</b> ${item.first_publish_year}</p>
-        </div>
+            <p><b>Publisher:</b> ${item.publisher ? item.publisher[0] : ' '
+                }</p >
+        <p><b>Published:</b> ${item.first_publish_year}</p>
+        </div >
 
-        </div>
-      
-        `
+        </div >
+
+    `
             mainDiv.appendChild(divElement);
 
 
