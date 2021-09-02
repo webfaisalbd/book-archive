@@ -1,13 +1,15 @@
+// globally declare common variable 
 const inputField = document.getElementById('input-field');
 const button = document.getElementById('button');
 const mainDiv = document.getElementById('main-div');
 const warningMassage = document.getElementById('warning-massage');
 
-
+// click handler for button 
 button.addEventListener('click', function () {
     const search = inputField.value;
     warningMassage.innerText = '';
     mainDiv.innerText = '';
+    // if search input is empty 
     if (search === '') {
         warningMassage.innerHTML = `
         <h5 class="p-3 rounded border border-info">Search field can not be empty</h5>
@@ -25,6 +27,7 @@ const display = data => {
     // const length = datas.length;
     // console.log(length);
     mainDiv.innerText = '';
+    // if search input is not matched 
     if (data.numFound === 0) {
         warningMassage.innerText = '';
         //console.log("data not found");
@@ -33,6 +36,7 @@ const display = data => {
         `;
     }
     else {
+        // if search input is  matched 
         warningMassage.innerText = '';
         warningMassage.innerHTML = `
         <h5 class="p-3 rounded border border-info">Search data found: ${data.numFound}</h5>
@@ -50,7 +54,6 @@ const display = data => {
         <div class="card-body p-3">
         <img 
         src="https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg" class="card-img-top" alt="...">
-        const num=item.publisher;
             <h4 class="card-title"><b>Book Title:</b> ${item.title}</h4>
             <p class="card-title"><b>Author Name:</b> ${item.author_name} </p>
             <p><b>Publisher:</b> ${item.publisher ? item.publisher[0] : ' '
