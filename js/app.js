@@ -1,13 +1,15 @@
 const inputField = document.getElementById('input-field');
 const button = document.getElementById('button');
 const mainDiv = document.getElementById('main-div');
-const error = document.getElementById('error');
+const warningMassage = document.getElementById('warning-massage');
 
 
 button.addEventListener('click', function () {
     const search = inputField.value;
+    warningMassage.innerText = '';
+    mainDiv.innerText = '';
     if (search == '') {
-        error.innerText = "search field can not be empty";
+        warningMassage.innerText = "search field can not be empty";
         return;
     }
     inputField.value = "";
@@ -20,13 +22,15 @@ button.addEventListener('click', function () {
 const display = data => {
     // const length = datas.length;
     // console.log(length);
+    mainDiv.innerText = '';
     if (data.numFound == 0) {
-        error.innerText = '';
+        warningMassage.innerText = '';
         //console.log("data not found");
-        error.innerText = 'data not found';
+        warningMassage.innerText = 'data not found';
     }
     else {
-        error.innerText = '';
+        warningMassage.innerText = '';
+        warningMassage.innerText = `${data.numFound}`;
         const datas = data.docs;
         datas.forEach(item => {
             // console.log(item.title);
