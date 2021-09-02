@@ -8,8 +8,10 @@ button.addEventListener('click', function () {
     const search = inputField.value;
     warningMassage.innerText = '';
     mainDiv.innerText = '';
-    if (search == '') {
-        warningMassage.innerText = "search field can not be empty";
+    if (search === '') {
+        warningMassage.innerHTML = `
+        <h5 class="p-3 rounded border border-info">Search field can not be empty</h5>
+        `;
         return;
     }
     inputField.value = "";
@@ -23,28 +25,36 @@ const display = data => {
     // const length = datas.length;
     // console.log(length);
     mainDiv.innerText = '';
-    if (data.numFound == 0) {
+    if (data.numFound === 0) {
         warningMassage.innerText = '';
         //console.log("data not found");
-        warningMassage.innerText = 'data not found';
+        warningMassage.innerHTML = `
+        <h5 class="p-3 rounded border border-info">Search data not found</h5>
+        `;
     }
     else {
         warningMassage.innerText = '';
-        warningMassage.innerText = `${data.numFound}`;
+        warningMassage.innerHTML = `
+        <h5 class="p-3 rounded border border-info">Search data found: ${data.numFound}</h5>
+        
+        `;
         const datas = data.docs;
         datas.forEach(item => {
             // console.log(item.title);
             const divElement = document.createElement('div');
-            divElement.classList.add("col-4");
+            divElement.classList.add("col");
             divElement.innerHTML = `
-        
-        <div class="card p-3">
+
+        <div class="card">
+        <div class="card-body p-3">
         <img 
         src="https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg" class="card-img-top" alt="...">
-            <h4 class="card-title">Book Title: ${item.title}</h4>
-            <p class="card-title">Author Name: ${item.author_name}</p>
-            <p>Publisher: ${item.publisher}</p>
-            <p>Published: ${item.first_publish_year}</p>
+            <h4 class="card-title"><b>Book Title:</b> ${item.title}</h4>
+            <p class="card-title"><b>Author Name:</b> ${item.author_name} </p>
+            <p><b>Publisher:</b> ${item.publisher[0]}</p>
+            <p><b>Published:</b> ${item.first_publish_year}</p>
+        </div>
+
         </div>
       
         `
